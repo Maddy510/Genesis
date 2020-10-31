@@ -1,0 +1,48 @@
+Menu_options = "Enter 'a' to add, 'l' to list, 's' to search and 'q' to quit : "
+movies = []
+
+def addMovie() :
+    movie_name = input("Enter Movie name : ")
+    movie_director = input("Enter name of Director : ")
+    movie_year = input("Enter Year of Release : ")
+    movies.append({
+        'movie_name': movie_name,
+        'director': movie_director,
+        'year': movie_year
+    })
+
+
+def printMovie(movie):
+    print(f"The movie {movie['movie_name']} was directed by Director {movie['director']} in the year {movie['year']}")
+
+
+def listMovie() :
+    for x in movies :
+        printMovie(x)
+
+def searchMovie() :
+    keyword = input("Enter the keyword to search : ")
+    result = 0
+    for movie in movies :
+        if movie['movie_name'] == keyword or movie['director'] == keyword or movie['year'] == keyword :
+            printMovie(movie)
+            result += 1
+    if result < 1:
+        print("Not found !!")
+
+def Menu() :
+    Menu_Prompt = input(Menu_options)
+    while Menu_Prompt != 'q':
+        if Menu_Prompt == 'a':
+            addMovie()
+        elif Menu_Prompt == 'l':
+            listMovie()
+        elif Menu_Prompt == 's':
+            searchMovie()
+        else:
+            print("Please select correct option")
+
+        Menu_Prompt = input(Menu_options)
+
+
+Menu()
